@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/plantilla/template :: head">
+<meta charset="UTF-8">
+</head>
+<body>
+
+	<header th:replace="/plantilla/template :: header"></header>
+
+
+	<div class="container">
+
+		<div class="card bg-light">
+
+			<div class="card-header bg-dark text-white" th:text=${titulo}></div>
+			<div class="card-body">
+				<form th:action=@{/views/clientes/guardar} th:object=${cliente}
+					method="post">
+					<div class="form-group row">
+						<input type="hidden" th:field="*{id}"> <label
+							class="col-md-2" for="nombres">NOMBRES:</label> <input
+							type="text" th:field="*{nombres}"
+							class="form-control form-control-sm col-md-6" id="nombres"
+							placeholder="Nombres del cliente"> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('nombres')}" th:errors=*{nombres}></small>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-md-2" for="apellidos">APELLIDOS:</label> <input
+							type="text" th:field="*{apellidos}"
+							class="form-control form-control-sm col-md-6" id="apellidos"
+							placeholder="Apellidos del cliente"> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('apellidos')}" th:errors=*{apellidos}></small>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-md-2" for="edad">EDAD:</label> <input
+							type="number" th:field="*{edad}" min="0"
+							class="form-control form-control-sm col-md-6" id="edad"
+							placeholder="Edad del cliente"> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('edad')}" th:errors=*{edad}></small>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-md-2" for="email">EMAIL:</label> <input
+							type="text" th:field="*{email}"
+							class="form-control form-control-sm col-md-6" id="email"
+							placeholder="Email del cliente"> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('email')}" th:errors=*{email}></small>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-md-2" for="direccion">DIRECCIÓN:</label> <input
+							type="text" th:field="*{direccion}"
+							class="form-control form-control-sm col-md-6" id="direccion"
+							placeholder="Dirección del cliente"> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('direccion')}" th:errors=*{direccion}></small>
+					</div>
+
+
+					<div class="form-group row">
+						<label class="col-md-2" for="direccion">GÉNERO:</label>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" th:field="*{genero}" type="radio"
+								name="genero" id="genero1" value="FEMENINO"> <label
+								class="form-check-label" for="genero1"> FEMENINO </label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" th:field="*{genero}" type="radio"
+								name="genero" id="genero2" value="MASCULINO"> <label
+								class="form-check-label" for="genero2"> MASCULINO </label>
+						</div>
+					</div>
+
+
+					<div class="form-group row">
+						<label class="col-md-2" for="pais">PAÍS:</label> <select
+							class="form-control form-control-sm col-md-6" th:field="*{pais}"
+							id="pais">
+							<option value="">Seleccione...</option>
+							<option th:each="pais : ${paisLista}" th:value="${pais}"
+								th:text="${pais}" />
+						</select>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-md-2" for="ciudad">CIUDAD:</label> <select
+							class="form-control form-control-sm col-md-6"
+							th:field="*{ciudad}" id="ciudad">
+							<option value="">Seleccione...</option>
+							<option th:each="ciudad : ${ciudades}" th:value="${ciudad.id}"
+								th:text="${ciudad.ciudad}" />
+						</select>
+					</div>
+
+
+					<div class="form-group row">
+						<label class="col-md-2" for="ciudad">HOBBIES:</label>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" id="libros"
+								th:field="*{libros}"> <label class="form-check-label"
+								for="libros">LIBROS</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" id="deportes"
+								th:field="*{deportes}"> <label class="form-check-label"
+								for="deportes">DEPORTES</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" id="peliculas"
+								th:field="*{peliculas}"> <label class="form-check-label"
+								for="peliculas">PELÍCULAS </label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" id="videoJuegos"
+								th:field="*{videoJuegos}"> <label
+								class="form-check-label" for="videoJuegos">VIDEO JUEGOS
+							</label>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="comentarios">COMENTARIOS:</label>
+						<textarea class="form-control" th:field="*{comentarios}"
+							id="comentarios"></textarea>
+					</div>
+
+					<div class="card-footer">
+						<input type="submit" class="btn btn-primary btm-sn"
+							th:href=@{/views/clientes/guardar} value="Enviar" /> <input
+							type="reset" class="btn btn-primary btm-sn"
+							value="Restaurar formulario" />
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+	<footer th:replace="/plantilla/template :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/plantilla/template :: head">
+<meta charset="UTF-8">
+</head>
+<body>
+
+	<header th:replace="/plantilla/template :: header"></header>
+	<div class="container">
+		<h1 th:text=${hola}></h1>
+		<h2 th:text=${mensaje}></h2>
+	</div>
+	<footer th:replace="/plantilla/template :: footer"></footer>
+</body>
+</html>
